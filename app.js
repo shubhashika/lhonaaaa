@@ -1,4 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const loaderScreen = document.getElementById("loader-screen");
+  const mainContent = document.querySelector("main");
+
+  window.setTimeout(() => {
+    document.body.classList.remove("is-loading");
+    if (mainContent) {
+      mainContent.setAttribute("aria-hidden", "false");
+    }
+  }, 5000);
+
   const themeToggle = document.querySelector(".theme-toggle");
 
   function applyTheme(theme) {
