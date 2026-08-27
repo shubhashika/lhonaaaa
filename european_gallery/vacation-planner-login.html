@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wayfarer — Sign in</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0D2B36;
+    --teal:#1B4B5A;
+    --teal-dark:#123640;
+    --amber:#E8A94C;
+    --sand:#F7F3E9;
+    --paper:#FFFDF8;
+    --coral:#C2472D;
+    --line: rgba(13,43,54,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    min-height:100vh;
+    background:var(--sand);
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(27,75,90,0.06) 0, transparent 40%),
+      radial-gradient(circle at 88% 82%, rgba(232,169,76,0.10) 0, transparent 45%);
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px 16px;
+  }
+
+  .stage{
+    width:100%;
+    max-width:940px;
+    display:grid;
+    grid-template-columns:1fr 1.15fr;
+    background:var(--paper);
+    border-radius:18px;
+    box-shadow:0 30px 60px -25px rgba(13,43,54,0.35);
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(14px);
+    animation:rise .6s cubic-bezier(.2,.7,.3,1) forwards;
+  }
+  @keyframes rise{to{opacity:1;transform:translateY(0);}}
+
+  @media (max-width:760px){
+    .stage{grid-template-columns:1fr;}
+  }
+
+  /* ---------- LEFT: route panel ---------- */
+  .route{
+    background:var(--teal);
+    background-image:linear-gradient(165deg, var(--teal) 0%, var(--teal-dark) 100%);
+    color:var(--sand);
+    padding:44px 38px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    overflow:hidden;
+  }
+  .route::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:radial-gradient(circle, rgba(247,243,233,0.18) 1px, transparent 1px);
+    background-size:16px 16px;
+    opacity:.5;
+    pointer-events:none;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:.02em;
+    position:relative;
+    z-index:1;
+  }
+  .brand span{color:var(--amber);}
+
+  .route-visual{
+    position:relative;
+    z-index:1;
+    margin:36px 0;
+  }
+  .route-visual svg{width:100%;height:auto;display:block;}
+  .route-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:rgba(247,243,233,0.65);
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+  }
+
+  .route-copy{
+    position:relative;
+    z-index:1;
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    line-height:1.35;
+    font-weight:400;
+  }
+  .route-copy em{
+    font-style:normal;
+    color:var(--amber);
+  }
+  .route-foot{
+    position:relative;
+    z-index:1;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:rgba(247,243,233,0.55);
+    margin-top:28px;
+    letter-spacing:.06em;
+  }
+
+  /* ---------- RIGHT: ticket stub ---------- */
+  .ticket{
+    padding:40px 42px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .tabs{
+    display:flex;
+    gap:6px;
+    background:var(--sand);
+    border-radius:999px;
+    padding:4px;
+    margin-bottom:28px;
+    width:fit-content;
+  }
+  .tab{
+    border:none;
+    background:transparent;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:9px 18px;
+    border-radius:999px;
+    cursor:pointer;
+    color:var(--teal);
+    opacity:.55;
+    transition:all .25s ease;
+  }
+  .tab.active{
+    background:var(--teal);
+    color:var(--sand);
+    opacity:1;
+  }
+
+  .ticket-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:4px;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-size:26px;
+    font-weight:600;
+    margin:0;
+  }
+  .pnr{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--teal);
+    opacity:.6;
+    letter-spacing:.08em;
+  }
+  .subhead{
+    font-size:13.5px;
+    color:var(--ink);
+    opacity:.6;
+    margin:6px 0 24px;
+  }
+
+  form{display:flex;flex-direction:column;gap:16px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--teal);
+    display:flex;
+    justify-content:space-between;
+  }
+  .field label .req{color:var(--coral);}
+  .field input{
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    padding:12px 13px;
+    font-family:'Inter', sans-serif;
+    font-size:14.5px;
+    background:var(--paper);
+    color:var(--ink);
+    outline:none;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .field input:focus{
+    border-color:var(--teal);
+    box-shadow:0 0 0 3px rgba(27,75,90,0.12);
+  }
+  .field input:focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:1px;
+  }
+  .field.error input{border-color:var(--coral);}
+  .error-msg{
+    font-size:12px;
+    color:var(--coral);
+    min-height:14px;
+    font-family:'Inter', sans-serif;
+  }
+
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media (max-width:420px){.row2{grid-template-columns:1fr;}}
+
+  .submit{
+    margin-top:6px;
+    border:none;
+    background:var(--ink);
+    color:var(--sand);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    padding:14px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:transform .15s ease, background .2s ease;
+  }
+  .submit:hover{background:var(--teal);}
+  .submit:active{transform:scale(.98);}
+
+  .perf{
+    position:relative;
+    height:1px;
+    margin:26px 0 22px;
+    border-top:2px dashed var(--line);
+  }
+  .perf::before,.perf::after{
+    content:"";
+    position:absolute;
+    top:-9px;
+    width:18px;height:18px;
+    background:var(--sand);
+    border-radius:50%;
+  }
+  .perf::before{left:-42px;}
+  .perf::after{right:-42px;}
+
+  .switch-line{
+    font-size:13px;
+    color:var(--ink);
+    opacity:.65;
+    text-align:center;
+  }
+  .switch-line button{
+    background:none;border:none;
+    color:var(--teal);
+    font-weight:600;
+    cursor:pointer;
+    text-decoration:underline;
+    font-size:13px;
+    padding:0;
+  }
+
+  .barcode{
+    margin-top:auto;
+    padding-top:20px;
+    display:flex;
+    gap:2px;
+    align-items:flex-end;
+    height:26px;
+    opacity:.5;
+  }
+  .barcode div{width:2px;background:var(--ink);}
+
+  /* ---------- Toast ---------- */
+  #toast-wrap{
+    position:fixed;
+    top:22px;
+    right:22px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    z-index:50;
+  }
+  .toast{
+    font-family:'Inter', sans-serif;
+    background:var(--ink);
+    color:var(--sand);
+    padding:14px 18px;
+    border-radius:12px;
+    box-shadow:0 12px 30px -10px rgba(13,43,54,0.5);
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    max-width:320px;
+    transform:translateX(120%);
+    animation:slide-in .45s cubic-bezier(.2,.7,.3,1) forwards;
+  }
+  .toast.leaving{animation:slide-out .35s ease forwards;}
+  @keyframes slide-in{to{transform:translateX(0);}}
+  @keyframes slide-out{to{transform:translateX(120%);opacity:0;}}
+  .toast .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--amber);
+    margin-top:5px;
+    flex-shrink:0;
+  }
+  .toast strong{display:block;font-size:13.5px;margin-bottom:2px;font-family:'Fraunces', serif; font-weight:600;}
+  .toast p{margin:0;font-size:12.5px;opacity:.75;line-height:1.4;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<div id="toast-wrap"></div>
+
+<div class="stage">
+
+  <!-- LEFT PANEL -->
+  <div class="route">
+    <div class="brand">Way<span>farer</span></div>
+
+    <div class="route-visual">
+      <svg viewBox="0 0 300 90" fill="none">
+        <path d="M10 70 Q 110 10 290 55" stroke="#F7F3E9" stroke-width="1.4" stroke-dasharray="1 7" stroke-linecap="round" opacity="0.6"/>
+        <circle cx="10" cy="70" r="4" fill="#F7F3E9"/>
+        <circle cx="290" cy="55" r="4" fill="#E8A94C"/>
+        <g transform="translate(140,32) rotate(-18)">
+          <path d="M0 0 L14 4 L0 8 L3 4 Z" fill="#E8A94C"/>
+        </g>
+      </svg>
+      <div class="route-label"><span>KTM · HOME</span><span>NEXT STOP · ANYWHERE</span></div>
+    </div>
+
+    <div class="route-copy">One <em>account</em>.<br>Every trip you'll<br>ever plan.</div>
+
+    <div class="route-foot">GATE OPENS ON SIGN IN · NO PRINTOUT NEEDED</div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="ticket">
+
+    <div class="tabs">
+      <button class="tab active" id="tab-login" type="button">Sign in</button>
+      <button class="tab" id="tab-signup" type="button">Create account</button>
+    </div>
+
+    <div class="ticket-head">
+      <h1 id="form-title">Welcome back</h1>
+      <span class="pnr" id="pnr">PNR·WF7719</span>
+    </div>
+    <p class="subhead" id="form-sub">Sign in to pick up your trip where you left off.</p>
+
+    <!-- LOGIN FORM -->
+    <form id="login-form" novalidate>
+      <div class="field" id="li-email-wrap">
+        <label>Email <span class="req">*</span></label>
+        <input type="text" id="li-email" placeholder="you@example.com" autocomplete="email">
+        <div class="error-msg" id="li-email-err"></div>
+      </div>
+      <div class="field" id="li-pass-wrap">
+        <label>Password <span class="req">*</span></label>
+        <input type="password" id="li-pass" placeholder="••••••••" autocomplete="current-password">
+        <div class="error-msg" id="li-pass-err"></div>
+      </div>
+      <button type="submit" class="submit">Board — sign in</button>
+    </form>
+
+    <!-- SIGNUP FORM -->
+    <form id="signup-form" novalidate style="display:none;">
+      <div class="field" id="su-name-wrap">
+        <label>Full name <span class="req">*</span></label>
+        <input type="text" id="su-name" placeholder="Jamie Rivera" autocomplete="name">
+        <div class="error-msg" id="su-name-err"></div>
+      </div>
+      <div class="row2">
+        <div class="field" id="su-email-wrap">
+          <label>Email <span class="req">*</span></label>
+          <input type="text" id="su-email" placeholder="you@example.com" autocomplete="email">
+          <div class="error-msg" id="su-email-err"></div>
+        </div>
+        <div class="field" id="su-phone-wrap">
+          <label>Phone <span class="req">*</span></label>
+          <input type="tel" id="su-phone" placeholder="+977 98XXXXXXXX" autocomplete="tel">
+          <div class="error-msg" id="su-phone-err"></div>
+        </div>
+      </div>
+      <div class="field" id="su-pass-wrap">
+        <label>Password <span class="req">*</span></label>
+        <input type="password" id="su-pass" placeholder="At least 8 characters" autocomplete="new-password">
+        <div class="error-msg" id="su-pass-err"></div>
+      </div>
+      <button type="submit" class="submit">Issue my ticket — create account</button>
+    </form>
+
+    <div class="perf"></div>
+    <p class="switch-line" id="switch-line">
+      New to Wayfarer? <button type="button" id="go-signup">Create an account</button>
+    </p>
+
+    <div class="barcode" id="barcode"></div>
+  </div>
+
+</div>
+
+<script>
+  // ---- in-memory "database" (session only, no backend) ----
+  const accounts = [];
+
+  // ---- barcode decoration ----
+  const barcode = document.getElementById('barcode');
+  for(let i=0;i<46;i++){
+    const bar = document.createElement('div');
+    const h = 8 + Math.random()*18;
+    bar.style.height = h+'px';
+    barcode.appendChild(bar);
+  }
+
+  // ---- tab switching ----
+  const tabLogin = document.getElementById('tab-login');
+  const tabSignup = document.getElementById('tab-signup');
+  const loginForm = document.getElementById('login-form');
+  const signupForm = document.getElementById('signup-form');
+  const title = document.getElementById('form-title');
+  const sub = document.getElementById('form-sub');
+  const switchLine = document.getElementById('switch-line');
+  const pnr = document.getElementById('pnr');
+
+  function randPNR(){
+    const letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+    let s = 'PNR·WF';
+    for(let i=0;i<4;i++) s += Math.floor(Math.random()*10);
+    return s;
+  }
+
+  function showLogin(){
+    tabLogin.classList.add('active');
+    tabSignup.classList.remove('active');
+    loginForm.style.display = 'flex';
+    signupForm.style.display = 'none';
+    title.textContent = 'Welcome back';
+    sub.textContent = "Sign in to pick up your trip where you left off.";
+    switchLine.innerHTML = 'New to Wayfarer? <button type="button" id="go-signup">Create an account</button>';
+    document.getElementById('go-signup').addEventListener('click', showSignup);
+    pnr.textContent = randPNR();
+  }
+
+  function showSignup(){
+    tabSignup.classList.add('active');
+    tabLogin.classList.remove('active');
+    signupForm.style.display = 'flex';
+    loginForm.style.display = 'none';
+    title.textContent = 'Create your account';
+    sub.textContent = "Three details and you're booked in.";
+    switchLine.innerHTML = 'Already have an account? <button type="button" id="go-login">Sign in</button>';
+    document.getElementById('go-login').addEventListener('click', showLogin);
+    pnr.textContent = randPNR();
+  }
+
+  tabLogin.addEventListener('click', showLogin);
+  tabSignup.addEventListener('click', showSignup);
+  document.getElementById('go-signup').addEventListener('click', showSignup);
+
+  // ---- validation helpers ----
+  function setError(fieldId, msg){
+    const wrap = document.getElementById(fieldId + '-wrap');
+    const err = document.getElementById(fieldId + '-err');
+    if(msg){
+      wrap.classList.add('error');
+      err.textContent = msg;
+    } else {
+      wrap.classList.remove('error');
+      err.textContent = '';
+    }
+  }
+
+  function isValidEmail(v){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+  }
+  function isValidPhone(v){
+    const digits = v.replace(/[^\d]/g,'');
+    return digits.length >= 7 && digits.length <= 15;
+  }
+
+  // ---- toast notifications ----
+  function toast(title, msg){
+    const wrap = document.getElementById('toast-wrap');
+    const el = document.createElement('div');
+    el.className = 'toast';
+    el.innerHTML = `<div class="dot"></div><div><strong>${title}</strong><p>${msg}</p></div>`;
+    wrap.appendChild(el);
+    setTimeout(()=>{
+      el.classList.add('leaving');
+      setTimeout(()=>el.remove(), 400);
+    }, 4200);
+  }
+
+  // ---- login submit ----
+  loginForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const email = document.getElementById('li-email').value;
+    const pass = document.getElementById('li-pass').value;
+    let ok = true;
+
+    if(!email.trim()){ setError('li-email','Email is required.'); ok = false; }
+    else if(!isValidEmail(email)){ setError('li-email','Enter a valid email address.'); ok = false; }
+    else setError('li-email','');
+
+    if(!pass){ setError('li-pass','Password is required.'); ok = false; }
+    else setError('li-pass','');
+
+    if(!ok) return;
+
+    const found = accounts.find(a => a.email.toLowerCase() === email.trim().toLowerCase());
+    if(!found){
+      toast('No account found', "That email hasn't been registered yet in this session. Try creating an account.");
+      return;
+    }
+    sessionStorage.setItem('wayfarerUser', JSON.stringify({
+      name: found.name,
+      email: found.email
+    }));
+    toast('Signed in', `Welcome back, ${found.name.split(' ')[0]}. Your trips are loading.`);
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 900);
+  });
+
+  // ---- signup submit ----
+  signupForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('su-name').value;
+    const email = document.getElementById('su-email').value;
+    const phone = document.getElementById('su-phone').value;
+    const pass = document.getElementById('su-pass').value;
+    let ok = true;
+
+    if(!name.trim()){ setError('su-name','Full name is required.'); ok = false; }
+    else setError('su-name','');
+
+    if(!email.trim()){ setError('su-email','Email is required.'); ok = false; }
+    else if(!isValidEmail(email)){ setError('su-email','Enter a valid email address.'); ok = false; }
+    else if(accounts.some(a => a.email.toLowerCase() === email.trim().toLowerCase())){
+      setError('su-email','An account with this email already exists.'); ok = false;
+    }
+    else setError('su-email','');
+
+    if(!phone.trim()){ setError('su-phone','Phone number is required.'); ok = false; }
+    else if(!isValidPhone(phone)){ setError('su-phone','Enter a valid phone number.'); ok = false; }
+    else setError('su-phone','');
+
+    if(!pass){ setError('su-pass','Password is required.'); ok = false; }
+    else if(pass.length < 8){ setError('su-pass','Use at least 8 characters.'); ok = false; }
+    else setError('su-pass','');
+
+    if(!ok) return;
+
+    accounts.push({ name: name.trim(), email: email.trim(), phone: phone.trim(), pass });
+    toast('Account created', `Welcome aboard, ${name.trim().split(' ')[0]}. Your Wayfarer account is ready.`);
+    signupForm.reset();
+    setTimeout(showLogin, 900);
+  });
+</script>
+
+</body>
+</html>
