@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>European Escapes - Vacation Destinations Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #fafafa;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #8d88a2 10%, #2a0c47 90%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .view {
+            display: none;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .countries-section {
+            padding: 80px 40px 100px;
+        }
+
+        .countries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
+        }
+
+        .country-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .country-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .country-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            transition: transform 0.6s ease;
+        }
+
+        .country-card:hover::before {
+            transform: scale(1.08);
+        }
+
+        .country-card.italy::before {
+            background-image: url('images/italy.jpeg');
+        }
+
+        .country-card.france::before {
+            background-image: url('https://c.pxhere.com/photos/73/07/france_paris_eiffel_tower_places_of_interest_fountain_park-635869.jpg!d');
+        }
+
+        .country-card.rome::before {
+            background-image: url('https://media.bookmundi.com/tour/rome-to-venice-italian-wonders-journey-5-days-1293422-1771394578.jpg?format=auto&quality=60&width=960');
+        }
+
+        .country-card.switzerland::before {
+            background-image: url('https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*o0FbPY_-LQ1n917r');
+        }
+
+        .country-card.germany::before {
+            background-image: url('https://leger.imgix.net/Destinations/Germany_D9/Neuschwanstein_P1542/Neuschwansteincastle_P1956/neuschwanstein-castle-1711.jpg?auto=format&fm=pjpg&q=35&w=600');
+        }
+
+        .country-card.netherlands::before {
+            background-image: url('images/amsterdam_real.jpg');
+        }
+
+        .country-info {
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 30px 25px 25px;
+            min-height: 100px;
+        }
+
+        .country-card h2 {
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .country-card .place-count {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        .gallery-section {
+            padding: 60px 40px;
+        }
+
+        .gallery-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 50px;
+            gap: 20px;
+        }
+
+        .back-btn {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        .gallery-title {
+            font-size: 2.8rem;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .places-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 28px;
+            margin-top: 40px;
+        }
+
+        .place-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .place-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .place-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .place-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent);
+            pointer-events: none;
+        }
+
+        .place-details {
+            padding: 22px;
+            background: white;
+        }
+
+        .place-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .place-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1.1rem;
+            }
+
+            .countries-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .country-card {
+                height: 300px;
+            }
+
+            .places-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+
+            .place-image {
+                height: 220px;
+                font-size: 3rem;
+            }
+
+            .gallery-title {
+                font-size: 2rem;
+            }
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>European Escapes</h1>
+        <p>Discover the most beautiful destinations across Europe</p>
+    </header>
+
+    <div class="view active" id="countriesView">
+        <section class="countries-section">
+            <div class="container">
+                <div class="countries-grid">
+                    <div class="country-card italy" onclick="showGallery('italy')">
+                        <div class="country-info">
+                            <h2>Italy</h2>
+                            <div class="place-count">6 destinations</div>
+                        </div>
+                    </div>
+
+                    <div class="country-card france" onclick="showGallery('france')">
+                        <div class="country-info">
+                            <h2>France</h2>
+                            <div class="place-count">6 destinations</div>
+                        </div>
+                    </div>
+
+                    <div class="country-card rome" onclick="showGallery('rome')">
+                        <div class="country-info">
+                            <h2>Rome</h2>
+                            <div class="place-count">6 landmarks</div>
+                        </div>
+                    </div>
+
+                    <div class="country-card switzerland" onclick="showGallery('switzerland')">
+                        <div class="country-info">
+                            <h2>Switzerland</h2>
+                            <div class="place-count">6 destinations</div>
+                        </div>
+                    </div>
+
+                    <div class="country-card germany" onclick="showGallery('germany')">
+                        <div class="country-info">
+                            <h2>Germany</h2>
+                            <div class="place-count">6 destinations</div>
+                        </div>
+                    </div>
+
+                    <div class="country-card netherlands" onclick="showGallery('netherlands')">
+                        <div class="country-info">
+                            <h2>Netherlands</h2>
+                            <div class="place-count">6 destinations</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="view" id="galleryView">
+        <section class="gallery-section">
+            <div class="container">
+                <div class="gallery-header">
+                    <button class="back-btn" onclick="backToCountries()">
+                        <span>←</span> Back
+                    </button>
+                    <h1 class="gallery-title" id="galleryCountry"></h1>
+                </div>
+                <div class="places-gallery" id="placesContainer"></div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 European Escapes Gallery. Discover your next adventure across Europe.</p>
+    </footer>
+
+    <script>
+        const destinations = {
+            italy: {
+                name: 'Italy',
+                places: [
+                    {
+                        name: 'Venice',
+                        description: 'The City of Canals with romantic gondola rides',
+                        image: 'images/venice.svg'
+                    },
+                    {
+                        name: 'Florence',
+                        description: 'Renaissance art and historic architecture',
+                        image: 'images/florence.svg'
+                    },
+                    {
+                        name: 'Amalfi Coast',
+                        description: 'Dramatic cliffs and picturesque villages',
+                        image: 'images/amalfi.svg'
+                    },
+                    {
+                        name: 'Milan',
+                        description: 'Fashion capital with stunning cathedral',
+                        image: 'images/milan.svg'
+                    },
+                    {
+                        name: 'Lake Como',
+                        description: 'Alpine lake surrounded by mountains',
+                        image: 'images/lake_como.svg'
+                    },
+                    {
+                        name: 'Cinque Terre',
+                        description: 'Five colorful villages perched on cliffs',
+                        image: 'images/cinque_terre.svg'
+                    }
+                ]
+            },
+            france: {
+                name: 'France',
+                places: [
+                    {
+                        name: 'Paris',
+                        description: 'The City of Light with iconic landmarks',
+                        image: 'https://c.pxhere.com/photos/73/07/france_paris_eiffel_tower_places_of_interest_fountain_park-635869.jpg!d'
+                    },
+                    {
+                        name: 'Provence',
+                        description: 'Lavender fields and charming villages',
+                        image: 'https://c.pxhere.com/photos/73/07/france_paris_eiffel_tower_places_of_interest_fountain_park-635869.jpg!d'
+                    },
+                    {
+                        name: 'Côte d\'Azur',
+                        description: 'French Riviera with glamorous beaches',
+                        image: 'https://c.pxhere.com/photos/73/07/france_paris_eiffel_tower_places_of_interest_fountain_park-635869.jpg!d'
+                    },
+                    {
+                        name: 'Mont-Saint-Michel',
+                        description: 'Medieval island fortress in Normandy',
+                        image: 'https://c.pxhere.com/photos/73/07/france_paris_eiffel_tower_places_of_interest_fountain_park-635869.jpg!d'
+                    },
+                    {
+                        name: 'Loire Valley',
+                        description: 'Historic châteaux and wine country',
+                        image: 'https://c.pxhere.com/photos/73/07/france_paris_eiffel_tower_places_of_interest_fountain_park-635869.jpg!d'
+                    },
+                    {
+                        name: 'Versailles',
+                        description: 'Magnificent palace and gardens',
+                        image: 'https://xyuandbeyond.com/wp-content/uploads/2024/01/Versailles-day-trip-from-Paris.jpg'
+                    }
+                ]
+            },
+            rome: {
+                name: 'Rome',
+                places: [
+                    {
+                        name: 'Colosseum',
+                        description: 'Ancient amphitheater icon of Rome',
+                        image: 'images/colosseum.svg'
+                    },
+                    {
+                        name: 'Vatican City',
+                        description: 'Home of the Pope and St. Peter\'s Basilica',
+                        image: 'images/vatican.svg'
+                    },
+                    {
+                        name: 'Roman Forum',
+                        description: 'Ancient marketplace and political center',
+                        image: 'images/roman_forum.svg'
+                    },
+                    {
+                        name: 'Trevi Fountain',
+                        description: 'Baroque masterpiece and wishing well',
+                        image: 'images/trevi_fountain.svg'
+                    },
+                    {
+                        name: 'Pantheon',
+                        description: 'Ancient temple with stunning dome',
+                        image: 'images/pantheon.svg'
+                    },
+                    {
+                        name: 'Spanish Steps',
+                        description: 'Historic staircase and meeting place',
+                        image: 'images/spanish_steps.svg'
+                    }
+                ]
+            },
+            switzerland: {
+                name: 'Switzerland',
+                places: [
+                    {
+                        name: 'Zermatt',
+                        description: 'Car-free village at the foot of Matterhorn',
+                        image: 'https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*o0FbPY_-LQ1n917r'
+                    },
+                    {
+                        name: 'Interlaken',
+                        description: 'Adventure capital between two lakes',
+                        image: 'https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*o0FbPY_-LQ1n917r'
+                    },
+                    {
+                        name: 'Lucerne',
+                        description: 'Medieval town with picturesque bridges',
+                        image: 'https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*o0FbPY_-LQ1n917r'
+                    },
+                    {
+                        name: 'Jungfrau Region',
+                        description: 'Top of Europe with stunning views',
+                        image: 'https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*o0FbPY_-LQ1n917r'
+                    },
+                    {
+                        name: 'Zurich',
+                        description: 'Modern city with Old Town charm',
+                        image: 'https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*o0FbPY_-LQ1n917r'
+                    },
+                    {
+                        name: 'Swiss Alps',
+                        description: 'Pristine mountains and alpine villages',
+                        image: 'https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*o0FbPY_-LQ1n917r'
+                    }
+                ]
+            },
+            germany: {
+                name: 'Germany',
+                places: [
+                    { name: 'Neuschwanstein Castle', description: 'Fairytale castle in Bavaria', image: 'https://leger.imgix.net/Destinations/Germany_D9/Neuschwanstein_P1542/Neuschwansteincastle_P1956/neuschwanstein-castle-1711.jpg?auto=format&fm=pjpg&q=35&w=600' },
+                    { name: 'Berlin', description: 'Historic capital and Brandenburg Gate', image: 'https://leger.imgix.net/Destinations/Germany_D9/Neuschwanstein_P1542/Neuschwansteincastle_P1956/neuschwanstein-castle-1711.jpg?auto=format&fm=pjpg&q=35&w=600' },
+                    { name: 'Hamburg', description: 'Maritime city on the Elbe', image: 'https://images.welt.de/67db01256f1fb2217852127b/93b53d6b74ab0db98b82997f381c395e/ci23x11-w1200/panorama-aerial-view-of-the-harbor-st-michaels-church-german-st-michaels' },
+                    { name: 'Munich', description: 'Bavarian city and Marienplatz', image: 'https://leger.imgix.net/Destinations/Germany_D9/Neuschwanstein_P1542/Neuschwansteincastle_P1956/neuschwanstein-castle-1711.jpg?auto=format&fm=pjpg&q=35&w=600' },
+                    { name: 'Rhine Valley', description: 'Scenic river valley and castles', image: 'https://images.welt.de/67db01256f1fb2217852127b/93b53d6b74ab0db98b82997f381c395e/ci23x11-w1200/panorama-aerial-view-of-the-harbor-st-michaels-church-german-st-michaels' },
+                    { name: 'Black Forest', description: 'Wooded mountains and villages', image: 'https://leger.imgix.net/Destinations/Germany_D9/Neuschwanstein_P1542/Neuschwansteincastle_P1956/neuschwanstein-castle-1711.jpg?auto=format&fm=pjpg&q=35&w=600' }
+                ]
+            },
+            netherlands: {
+                name: 'Netherlands',
+                places: [
+                    { name: 'Amsterdam', description: 'Historic canals and canal houses', image: 'images/amsterdam_real.jpg' },
+                    { name: 'Rijksmuseum', description: 'World-famous art museum in Amsterdam', image: 'images/amsterdam_real.jpg' },
+                    { name: 'Keukenhof', description: 'Famous Dutch flower gardens', image: 'images/amsterdam_real.jpg' },
+                    { name: 'Zaanse Schans', description: 'Traditional windmills and Dutch houses', image: 'images/amsterdam_real.jpg' },
+                    { name: 'Rotterdam', description: 'Modern architecture and waterfront', image: 'images/amsterdam_real.jpg' },
+                    { name: 'Utrecht', description: 'Historic centre with canals and wharves', image: 'images/amsterdam_real.jpg' }
+                ]
+            }
+        };
+
+        function showGallery(country) {
+            const data = destinations[country];
+            document.getElementById('countriesView').classList.remove('active');
+            document.getElementById('galleryView').classList.add('active');
+            document.getElementById('galleryCountry').textContent = data.name;
+
+            const container = document.getElementById('placesContainer');
+            container.innerHTML = data.places.map(place => `
+                <div class="place-card">
+                    <div class="place-image" style="background-image: url('${place.image}');"></div>
+                    <div class="place-details">
+                        <div class="place-name">${place.name}</div>
+                        <div class="place-description">${place.description}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function backToCountries() {
+            document.getElementById('countriesView').classList.add('active');
+            document.getElementById('galleryView').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

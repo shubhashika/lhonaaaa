@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="zurichSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#B0C4DE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E6E6FA;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky -->
+  <rect width="800" height="600" fill="url(#zurichSky)"/>
+  
+  <!-- Lake -->
+  <ellipse cx="400" cy="480" rx="300" ry="80" fill="#4A90E2" opacity="0.6"/>
+  
+  <!-- Old Town buildings -->
+  <rect x="150" y="280" width="80" height="120" fill="#D4A574"/>
+  <rect x="250" y="270" width="90" height="130" fill="#E8CBA5"/>
+  <rect x="360" y="290" width="85" height="110" fill="#D4A574"/>
+  
+  <!-- Building roofs -->
+  <polygon points="165,280 150,250 180,280" fill="#8B4513"/>
+  <polygon points="280,270 260,240 300,270" fill="#A0522D"/>
+  <polygon points="380,290 365,260 395,290" fill="#8B4513"/>
+  
+  <!-- Church tower -->
+  <rect x="520" y="200" width="50" height="200" fill="#A0826D"/>
+  <polygon points="525,200 545,120 565,200" fill="#8B4513"/>
+  <circle cx="545" cy="115" r="8" fill="#FFD700"/>
+  
+  <!-- Modern buildings (skyscrapers) -->
+  <rect x="650" y="220" width="60" height="200" fill="#C0C0C0"/>
+  <rect x="720" y="240" width="50" height="180" fill="#A9A9A9"/>
+  
+  <!-- Windows - Old Town -->
+  <circle cx="170" cy="320" r="6" fill="#87CEEB"/>
+  <circle cx="190" cy="320" r="6" fill="#87CEEB"/>
+  <circle cx="270" cy="310" r="6" fill="#87CEEB"/>
+  <circle cx="310" cy="310" r="6" fill="#87CEEB"/>
+  <circle cx="375" cy="330" r="6" fill="#87CEEB"/>
+  <circle cx="410" cy="330" r="6" fill="#87CEEB"/>
+  
+  <!-- Windows - Modern -->
+  <rect x="665" y="240" width="8" height="10" fill="#87CEEB"/>
+  <rect x="680" y="240" width="8" height="10" fill="#87CEEB"/>
+  <rect x="665" y="270" width="8" height="10" fill="#87CEEB"/>
+  <rect x="680" y="270" width="8" height="10" fill="#87CEEB"/>
+  
+  <!-- River/waterfront -->
+  <ellipse cx="400" cy="460" rx="250" ry="50" fill="#2E5C8A" opacity="0.3"/>
+  
+  <!-- Boats -->
+  <ellipse cx="280" cy="470" rx="22" ry="11" fill="#DC143C"/>
+  <ellipse cx="520" cy="480" rx="20" ry="10" fill="#1C1C1C"/>
+</svg>

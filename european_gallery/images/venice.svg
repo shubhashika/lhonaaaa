@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E0F6FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E5C8A;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky -->
+  <rect width="800" height="400" fill="url(#skyGrad)"/>
+  
+  <!-- Water -->
+  <rect y="400" width="800" height="200" fill="url(#waterGrad)"/>
+  
+  <!-- Buildings left -->
+  <rect x="50" y="250" width="150" height="200" fill="#D4A574"/>
+  <rect x="50" y="250" width="150" height="20" fill="#8B4513"/>
+  <circle cx="85" cy="310" r="12" fill="#87CEEB"/>
+  <circle cx="120" cy="310" r="12" fill="#87CEEB"/>
+  <circle cx="155" cy="310" r="12" fill="#87CEEB"/>
+  <circle cx="85" cy="360" r="12" fill="#87CEEB"/>
+  <circle cx="120" cy="360" r="12" fill="#87CEEB"/>
+  <circle cx="155" cy="360" r="12" fill="#87CEEB"/>
+  
+  <!-- Bell Tower (Campanile) -->
+  <rect x="350" y="150" width="100" height="250" fill="#C9A876"/>
+  <polygon points="350,150 400,80 450,150" fill="#A0835D"/>
+  <rect x="365" y="200" width="70" height="60" fill="#87CEEB" opacity="0.6"/>
+  <rect x="365" y="280" width="70" height="60" fill="#87CEEB" opacity="0.6"/>
+  
+  <!-- Buildings center-right -->
+  <rect x="520" y="280" width="140" height="170" fill="#E8A48F"/>
+  <rect x="520" y="280" width="140" height="20" fill="#A0522D"/>
+  <circle cx="550" cy="340" r="12" fill="#87CEEB"/>
+  <circle cx="590" cy="340" r="12" fill="#87CEEB"/>
+  <circle cx="630" cy="340" r="12" fill="#87CEEB"/>
+  
+  <!-- Gondola 1 -->
+  <ellipse cx="200" cy="450" rx="40" ry="20" fill="#2C2C2C"/>
+  <path d="M 180 450 L 220 450" stroke="#B8860B" stroke-width="3" fill="none"/>
+  <circle cx="200" cy="430" r="8" fill="#DAA520"/>
+  
+  <!-- Gondola 2 -->
+  <ellipse cx="500" cy="480" rx="40" ry="20" fill="#1A1A1A"/>
+  <path d="M 480 480 L 520 480" stroke="#FFD700" stroke-width="3" fill="none"/>
+  <circle cx="500" cy="460" r="8" fill="#FFA500"/>
+  
+  <!-- Water ripples -->
+  <circle cx="300" cy="500" r="20" stroke="#87CEEB" stroke-width="2" fill="none" opacity="0.6"/>
+  <circle cx="600" cy="520" r="30" stroke="#87CEEB" stroke-width="2" fill="none" opacity="0.4"/>
+  
+  <!-- Sun -->
+  <circle cx="700" cy="100" r="40" fill="#FFD700" opacity="0.8"/>
+  
+  <!-- Clouds -->
+  <ellipse cx="150" cy="120" rx="50" ry="25" fill="#FFFFFF" opacity="0.7"/>
+  <ellipse cx="200" cy="110" rx="40" ry="20" fill="#FFFFFF" opacity="0.7"/>
+  <ellipse cx="680" cy="80" rx="45" ry="22" fill="#FFFFFF" opacity="0.6"/>
+</svg>

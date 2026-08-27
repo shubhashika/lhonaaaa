@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="antiqueSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFE4C4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky -->
+  <rect width="800" height="600" fill="url(#antiqueSky)"/>
+  
+  <!-- Ancient columns -->
+  <rect x="100" y="200" width="12" height="200" fill="#A0826D"/>
+  <rect x="160" y="200" width="12" height="200" fill="#A0826D"/>
+  <rect x="220" y="200" width="12" height="200" fill="#A0826D"/>
+  
+  <rect x="450" y="180" width="12" height="220" fill="#8B7355"/>
+  <rect x="510" y="180" width="12" height="220" fill="#8B7355"/>
+  <rect x="570" y="180" width="12" height="220" fill="#8B7355"/>
+  <rect x="630" y="180" width="12" height="220" fill="#8B7355"/>
+  
+  <!-- Column capitals -->
+  <ellipse cx="106" cy="200" rx="20" ry="8" fill="#8B7355"/>
+  <ellipse cx="166" cy="200" rx="20" ry="8" fill="#8B7355"/>
+  <ellipse cx="226" cy="200" rx="20" ry="8" fill="#8B7355"/>
+  
+  <ellipse cx="456" cy="180" rx="20" ry="8" fill="#696969"/>
+  <ellipse cx="516" cy="180" rx="20" ry="8" fill="#696969"/>
+  <ellipse cx="576" cy="180" rx="20" ry="8" fill="#696969"/>
+  <ellipse cx="636" cy="180" rx="20" ry="8" fill="#696969"/>
+  
+  <!-- Partial structures - ruins -->
+  <polygon points="320,280 360,250 380,280" fill="#A0826D"/>
+  <polygon points="340,350 390,320 410,350" fill="#8B7355"/>
+  
+  <!-- Ground/Forum -->
+  <rect y="400" width="800" height="200" fill="#8B7355" opacity="0.2"/>
+  
+  <!-- Rubble scattered -->
+  <rect x="50" y="450" width="30" height="20" fill="#8B7355"/>
+  <rect x="120" y="480" width="25" height="18" fill="#A0826D"/>
+  <rect x="700" y="460" width="35" height="22" fill="#8B7355"/>
+  <rect x="650" y="500" width="28" height="20" fill="#A0826D"/>
+  
+  <!-- Stone arch -->
+  <path d="M 680 320 Q 680 280 720 280 Q 720 320 680 320" fill="none" stroke="#696969" stroke-width="8"/>
+  
+  <!-- Foreground rocks -->
+  <ellipse cx="150" cy="530" rx="40" ry="25" fill="#696969"/>
+  <ellipse cx="600" cy="540" rx="50" ry="30" fill="#8B7355"/>
+  
+  <!-- Sun -->
+  <circle cx="50" cy="60" r="40" fill="#FFD700" opacity="0.7"/>
+</svg>

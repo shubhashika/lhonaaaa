@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="normSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#B0C4DE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E6E6FA;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bayWater" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E5C8A;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky -->
+  <rect width="800" height="350" fill="url(#normSky)"/>
+  
+  <!-- Bay water -->
+  <rect y="350" width="800" height="250" fill="url(#bayWater)"/>
+  
+  <!-- Sandy shore -->
+  <ellipse cx="400" cy="450" rx="250" ry="60" fill="#F4A460"/>
+  
+  <!-- Island rock -->
+  <polygon points="400,280 350,380 450,380" fill="#696969"/>
+  <polygon points="400,280 360,360 440,360" fill="#808080"/>
+  
+  <!-- Abbey buildings -->
+  <rect x="370" y="200" width="60" height="100" fill="#A0826D"/>
+  <rect x="375" y="210" width="12" height="20" fill="#87CEEB"/>
+  <rect x="400" y="210" width="12" height="20" fill="#87CEEB"/>
+  <rect x="425" y="210" width="12" height="20" fill="#87CEEB"/>
+  
+  <!-- Church tower/spire -->
+  <polygon points="400,200 390,120 410,200" fill="#8B4513"/>
+  <circle cx="400" cy="115" r="8" fill="#FFD700"/>
+  
+  <!-- Additional structures -->
+  <rect x="360" y="260" width="25" height="40" fill="#A0826D"/>
+  <rect x="420" y="270" width="28" height="35" fill="#A0826D"/>
+  
+  <!-- Defensive wall/ramparts -->
+  <line x1="340" y1="350" x2="460" y2="350" stroke="#696969" stroke-width="4"/>
+  
+  <!-- Causeway -->
+  <rect x="350" y="430" width="100" height="15" fill="#D2B48C"/>
+  
+  <!-- Water effects -->
+  <circle cx="200" cy="480" r="25" stroke="#87CEEB" stroke-width="2" fill="none" opacity="0.5"/>
+  <circle cx="600" cy="500" r="30" stroke="#87CEEB" stroke-width="2" fill="none" opacity="0.4"/>
+  
+  <!-- Clouds -->
+  <ellipse cx="100" cy="100" rx="50" ry="25" fill="#FFFFFF" opacity="0.7"/>
+  <ellipse cx="700" cy="120" rx="45" ry="22" fill="#FFFFFF" opacity="0.6"/>
+</svg>

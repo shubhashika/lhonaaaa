@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="intSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E0F6FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="intLakes" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E5C8A;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky -->
+  <rect width="800" height="350" fill="url(#intSky)"/>
+  
+  <!-- Mountains left and right -->
+  <polygon points="0,350 150,200 300,350" fill="#6B4423"/>
+  <polygon points="500,350 650,150 800,350" fill="#6B4423"/>
+  
+  <!-- Snow caps -->
+  <polygon points="150,200 120,280 180,280" fill="#FFFFFF" opacity="0.8"/>
+  <polygon points="650,150 610,250 690,250" fill="#FFFFFF" opacity="0.8"/>
+  
+  <!-- Lakes left and right -->
+  <ellipse cx="200" cy="450" rx="120" ry="60" fill="url(#intLakes)"/>
+  <ellipse cx="600" cy="480" rx="130" ry="65" fill="url(#intLakes)"/>
+  
+  <!-- Town in middle -->
+  <rect x="300" y="360" width="200" height="100" fill="#D4A574" opacity="0.8"/>
+  
+  <!-- Buildings -->
+  <rect x="320" y="375" width="40" height="45" fill="#E8CBA5"/>
+  <rect x="375" y="370" width="45" height="50" fill="#F5DEB3"/>
+  <rect x="435" y="375" width="40" height="45" fill="#E8CBA5"/>
+  
+  <!-- Roofs -->
+  <polygon points="330,375 310,360 350,375" fill="#8B4513"/>
+  <polygon points="390,370 370,355 410,370" fill="#A0522D"/>
+  <polygon points="450,375 430,360 470,375" fill="#8B4513"/>
+  
+  <!-- Windows -->
+  <circle cx="330" cy="395" r="5" fill="#87CEEB"/>
+  <circle cx="345" cy="395" r="5" fill="#87CEEB"/>
+  <circle cx="385" cy="390" r="5" fill="#87CEEB"/>
+  <circle cx="400" cy="390" r="5" fill="#87CEEB"/>
+  <circle cx="440" cy="395" r="5" fill="#87CEEB"/>
+  <circle cx="455" cy="395" r="5" fill="#87CEEB"/>
+  
+  <!-- Boats on lakes -->
+  <ellipse cx="150" cy="460" rx="20" ry="12" fill="#DC143C"/>
+  <ellipse cx="600" cy="490" rx="22" ry="13" fill="#1C1C1C"/>
+  
+  <!-- Paragliders (suggested) -->
+  <polygon points="700,200 710,220 690,220" fill="#FF69B4" opacity="0.6"/>
+  <line x1="705" y1="220" x2="690" y2="280" stroke="#FF69B4" stroke-width="1" opacity="0.6"/>
+</svg>

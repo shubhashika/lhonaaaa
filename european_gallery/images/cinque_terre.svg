@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="coastSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFE4C4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1E90FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#006994;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky -->
+  <rect width="800" height="350" fill="url(#coastSky)"/>
+  
+  <!-- Ocean -->
+  <rect y="350" width="800" height="250" fill="url(#oceanGrad)"/>
+  
+  <!-- Cliffs -->
+  <polygon points="0,350 100,250 200,280 300,240 400,260 500,200 600,240 700,220 800,300 800,600 0,600" fill="#8B7355"/>
+  
+  <!-- Cliff details -->
+  <polygon points="0,350 100,250 200,280 300,240 400,260 500,200 600,240 700,220 800,300 800,450 0,450" fill="#A0826D"/>
+  
+  <!-- Colorful village houses stacked -->
+  <!-- House 1 - Red -->
+  <rect x="80" y="200" width="50" height="50" fill="#DC143C"/>
+  <circle cx="95" cy="220" r="8" fill="#87CEEB"/>
+  <circle cx="115" cy="220" r="8" fill="#87CEEB"/>
+  
+  <!-- House 2 - Yellow -->
+  <rect x="130" y="240" width="55" height="55" fill="#FFD700"/>
+  <circle cx="147" cy="265" r="8" fill="#87CEEB"/>
+  <circle cx="170" cy="265" r="8" fill="#87CEEB"/>
+  
+  <!-- House 3 - Pink -->
+  <rect x="220" y="200" width="50" height="50" fill="#FF69B4"/>
+  <circle cx="235" cy="220" r="8" fill="#87CEEB"/>
+  <circle cx="255" cy="220" r="8" fill="#87CEEB"/>
+  
+  <!-- House 4 - Green -->
+  <rect x="310" y="230" width="55" height="55" fill="#32CD32"/>
+  <circle cx="327" cy="255" r="8" fill="#87CEEB"/>
+  <circle cx="350" cy="255" r="8" fill="#87CEEB"/>
+  
+  <!-- House 5 - Purple -->
+  <rect x="450" y="190" width="50" height="50" fill="#9370DB"/>
+  <circle cx="465" cy="210" r="8" fill="#87CEEB"/>
+  <circle cx="485" cy="210" r="8" fill="#87CEEB"/>
+  
+  <!-- Vegetation -->
+  <ellipse cx="150" cy="150" rx="40" ry="35" fill="#228B22"/>
+  <ellipse cx="400" cy="160" rx="45" ry="40" fill="#228B22"/>
+  <ellipse cx="650" cy="170" rx="35" ry="30" fill="#228B22"/>
+  
+  <!-- Boats -->
+  <ellipse cx="250" cy="430" rx="28" ry="13" fill="#DC143C"/>
+  <ellipse cx="550" cy="450" rx="25" ry="12" fill="#1C1C1C"/>
+  
+  <!-- Sun -->
+  <circle cx="680" cy="70" r="40" fill="#FFD700" opacity="0.8"/>
+</svg>
